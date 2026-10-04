@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI Resume Analyzer - analyze resume text, extract skills, and get improvement suggestions." />
+  <title>AI Resume Analyzer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: "#071b3a",
+            gold: "#f5a900",
+            cream: "#fffaf0"
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: "Inter", sans-serif; }
+    .glass { backdrop-filter: blur(12px); background: rgba(255,255,255,.82); }
+    .gradient-text { background: linear-gradient(90deg,#071b3a,#b96b00); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .bar { transition: width .8s ease; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+  <header class="sticky top-0 z-20 border-b border-slate-200/80 bg-white/90 backdrop-blur">
+    <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
+      <a href="#home" class="flex items-center gap-3 font-extrabold text-navy">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-navy text-gold text-xl">✦</span>
+        <span>AI Resume Analyzer</span>
+      </a>
+      <div class="hidden gap-6 text-sm font-semibold md:flex">
+        <a href="#features" class="hover:text-amber-600">Features</a>
+        <a href="#analyzer" class="hover:text-amber-600">Analyzer</a>
+        <a href="#about" class="hover:text-amber-600">About</a>
+      </div>
+      <a href="#analyzer" class="rounded-full bg-navy px-5 py-2.5 text-sm font-bold text-white hover:bg-slate-800">Analyze Resume</a>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="overflow-hidden bg-gradient-to-br from-amber-50 via-white to-slate-100">
+      <div class="mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 md:grid-cols-2 md:py-28">
+        <div>
+          <p class="mb-4 inline-flex rounded-full border border-amber-200 bg-amber-100 px-4 py-2 text-sm font-bold text-amber-800">
+            Smart resume feedback
+          </p>
+          <h1 class="text-4xl font-extrabold leading-tight text-navy md:text-6xl">
+            Make your resume <span class="gradient-text">job-ready.</span>
+          </h1>
+          <p class="mt-5 max-w-xl text-lg leading-8 text-slate-600">
+            Parse resume content, extract relevant skills, calculate a match score, and receive practical improvement suggestions.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="#analyzer" class="rounded-xl bg-navy px-6 py-3.5 font-bold text-white shadow-lg shadow-slate-300 hover:-translate-y-0.5">Start Analysis</a>
+            <a href="#features" class="rounded-xl border border-slate-300 bg-white px-6 py-3.5 font-bold text-navy hover:bg-slate-50">Explore Features</a>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="glass rounded-3xl border border-white p-6 shadow-2xl shadow-slate-300/50">
+            <div class="flex items-start gap-5">
+              <div class="grid h-20 w-20 shrink-0 place-items-center rounded-2xl bg-navy text-4xl text-gold">📄</div>
+              <div>
+                <h2 class="text-2xl font-extrabold text-amber-700">AI Resume Analyzer</h2>
+                <p class="mt-2 text-slate-600">Parse resumes and give AI-powered improvement feedback.</p>
+                <p class="mt-4 font-bold text-navy">Key Features:</p>
+                <ul class="mt-2 list-disc space-y-1 pl-5 text-slate-600">
+                  <li>Resume parsing & skill extraction</li>
+                  <li>AI suggestions for improvement</li>
+                  <li>Score & match percentage</li>
+                </ul>
+              </div>
+            </div>
+            <div class="mt-6 rounded-2xl bg-amber-50 p-4">
+              <div class="mb-2 flex justify-between text-sm font-bold"><span>Sample ATS Match</span><span>82%</span></div>
+              <div class="h-3 overflow-hidden rounded-full bg-white"><div class="h-full w-[82%] rounded-full bg-amber-500"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="mx-auto max-w-6xl px-5 py-20">
+      <div class="mx-auto max-w-2xl text-center">
+        <p class="font-bold uppercase tracking-widest text-amber-600">Features</p>
+        <h2 class="mt-2 text-3xl font-extrabold text-navy md:text-4xl">Everything you need for a better resume</h2>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        <article class="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
+          <div class="text-3xl">🔎</div><h3 class="mt-4 text-xl font-bold text-navy">Skill Extraction</h3>
+          <p class="mt-2 text-slate-600">Detect common technical and professional skills from your resume.</p>
+        </article>
+        <article class="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
+          <div class="text-3xl">🤖</div><h3 class="mt-4 text-xl font-bold text-navy">Smart Suggestions</h3>
+          <p class="mt-2 text-slate-600">Get actionable feedback based on resume structure and content.</p>
+        </article>
+        <article class="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
+          <div class="text-3xl">📊</div><h3 class="mt-4 text-xl font-bold text-navy">Match Score</h3>
+          <p class="mt-2 text-slate-600">Compare your resume against a target job description.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="analyzer" class="bg-navy px-5 py-20">
+      <div class="mx-auto max-w-6xl">
+        <div class="text-center text-white">
+          <p class="font-bold uppercase tracking-widest text-amber-400">Try it now</p>
+          <h2 class="mt-2 text-3xl font-extrabold md:text-4xl">Analyze your resume</h2>
+          <p class="mx-auto mt-3 max-w-2xl text-slate-300">Paste your resume and optionally add a job description. This demo runs locally in your browser.</p>
+        </div>
+
+        <div class="mt-10 grid gap-6 lg:grid-cols-2">
+          <div class="rounded-3xl bg-white p-6 shadow-xl">
+            <label class="block text-sm font-bold text-navy" for="resumeText">Resume text</label>
+            <textarea id="resumeText" rows="12" class="mt-2 w-full rounded-2xl border border-slate-300 p-4 outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100" placeholder="Paste your resume text here..."></textarea>
+            <label class="mt-5 block text-sm font-bold text-navy" for="jobText">Target job description (optional)</label>
+            <textarea id="jobText" rows="7" class="mt-2 w-full rounded-2xl border border-slate-300 p-4 outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100" placeholder="Paste the job description here..."></textarea>
+            <button id="analyzeBtn" class="mt-5 w-full rounded-xl bg-amber-500 px-5 py-3.5 font-extrabold text-navy hover:bg-amber-400">Analyze Resume</button>
+            <p id="status" class="mt-3 text-center text-sm text-slate-500"></p>
+          </div>
+
+          <div id="results" class="rounded-3xl bg-white p-6 shadow-xl">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xl font-extrabold text-navy">Analysis Result</h3>
+              <span id="scoreBadge" class="rounded-full bg-slate-100 px-3 py-1 text-sm font-bold text-slate-500">Not analyzed</span>
+            </div>
+            <div class="mt-6 grid grid-cols-2 gap-4">
+              <div class="rounded-2xl bg-amber-50 p-5 text-center"><p class="text-sm text-slate-600">Resume Score</p><p id="resumeScore" class="mt-1 text-4xl font-extrabold text-navy">—</p></div>
+              <div class="rounded-2xl bg-slate-100 p-5 text-center"><p class="text-sm text-slate-600">Job Match</p><p id="matchScore" class="mt-1 text-4xl font-extrabold text-navy">—</p></div>
+            </div>
+            <div class="mt-6">
+              <h4 class="font-bold text-navy">Detected skills</h4>
+              <div id="skills" class="mt-3 flex flex-wrap gap-2"><span class="text-sm text-slate-500">Run an analysis to see skills.</span></div>
+            </div>
+            <div class="mt-6">
+              <h4 class="font-bold text-navy">Suggestions</h4>
+              <ul id="suggestions" class="mt-3 space-y-2 text-sm text-slate-600"><li>• Add your resume text and click Analyze Resume.</li></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="mx-auto max-w-6xl px-5 py-20">
+      <div class="rounded-3xl bg-amber-50 p-8 md:p-12">
+        <h2 class="text-3xl font-extrabold text-navy">About this mini project</h2>
+        <p class="mt-4 max-w-3xl leading-7 text-slate-700">
+          This project demonstrates responsive UI development with HTML, Tailwind CSS and JavaScript. The analyzer is a front-end demo: it uses keyword-based parsing in the browser rather than sending private resume data to a real AI API.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white">
+    <div class="mx-auto flex max-w-6xl flex-col gap-2 px-5 py-7 text-sm text-slate-500 md:flex-row md:justify-between">
+      <span>© 2026 AI Resume Analyzer</span>
+      <a href="#home" class="font-bold text-navy hover:text-amber-600">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
