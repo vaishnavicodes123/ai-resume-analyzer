@@ -1,3 +1,7 @@
+const resumeFileInput = document.getElementById("resumeFile");
+const resumeTextArea = document.getElementById("resumeText");
+const uploadStatus = document.getElementById("uploadStatus");
+
 const skillBank = [
   "Python","Java","JavaScript","HTML","CSS","Tailwind","React","Node.js","Express",
   "MongoDB","MySQL","SQL","Git","GitHub","PHP","C","C++","FastAPI","REST API",
@@ -6,6 +10,96 @@ const skillBank = [
 ];
 
 const analyzeBtn = document.getElementById("analyzeBtn");
+
+
+resumeFileInput.addEventListener("change", async function () {
+  const file = this.files[0];
+
+  if (!file) {
+    return;
+  }
+
+  const maxSize = 5 * 1024 * 1024; // 5 MB
+
+  if (file.size > maxSize) {
+    uploadStatus.textContent = "File is too large. Maximum size is 5 MB.";
+    uploadStatus.className = "mt-3 text-sm font-semibold text-red-600";
+    this.value = "";
+    return;
+  }
+
+  const fileName = file.name.toLowerCase();
+
+  if (!fileName.endsWith(".txt") && !fileName.endsWith(".pdf")) {
+    uploadStatus.textContent = "Please upload a PDF or TXT file.";
+    uploadStatus.className = "mt-3 text-sm font-semibold text-red-600";
+    this.value = "";
+    return;
+  }
+
+  uploadStatus.textContent = "Reading resume...";
+  uploadStatus.className = "mt-3 text-sm font-semibold text-amber-600";
+
+  try {
+    if (fileName.endsWith(".txt")) {
+      const text = await file.text();
+
+      resumeTextArea.value = text;
+
+      uploadStatus.textContent =
+        `✓ ${file.name} uploaded successfully`;
+
+      uploadStatus.className =
+        "mt-3 text-sm font-semibold text-green-600";
+    }
+
+    if (fileName.endsWith(".pdf")) {
+      const pdfjsLib = await import(
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs"
+      );
+
+      pdfjsLib.GlobalWorkerOptions.workerSrc =
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
+
+      const arrayBuffer = await file.arrayBuffer();
+
+      const pdf = await pdfjsLib.getDocument({
+        data: arrayBuffer
+      }).promise;
+
+      let extractedText = "";
+
+      for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
+        const page = await pdf.getPage(pageNumber);
+
+        const content = await page.getTextContent();
+
+        const pageText = content.items
+          .map(item => item.str)
+          .join(" ");
+
+        extractedText += pageText + "\n";
+      }
+
+      resumeTextArea.value = extractedText.trim();
+
+      uploadStatus.textContent =
+        `✓ ${file.name} uploaded and text extracted`;
+
+      uploadStatus.className =
+        "mt-3 text-sm font-semibold text-green-600";
+    }
+
+  } catch (error) {
+    console.error(error);
+
+    uploadStatus.textContent =
+      "Unable to read this file. Please try another resume.";
+
+    uploadStatus.className =
+      "mt-3 text-sm font-semibold text-red-600";
+  }
+});
 
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
