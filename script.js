@@ -3,6 +3,7 @@ const resumeTextArea = document.getElementById("resumeText");
 const uploadStatus = document.getElementById("uploadStatus");
 
 const dropZone = document.getElementById("dropZone");
+const clearResumeBtn = document.getElementById("clearResumeBtn");
 
 function handleResumeFile(file) {
   if (!file) {
@@ -19,9 +20,23 @@ function handleResumeFile(file) {
 
     uploadStatus.className =
       "mt-3 text-sm font-semibold text-red-600";
+      clearResumeBtn.classList.remove("hidden");
 
     return;
   }
+
+  clearResumeBtn.addEventListener("click", function () {
+  resumeFileInput.value = "";
+  uploadStatus.textContent = "";
+
+  clearResumeBtn.classList.add("hidden");
+
+  dropZone.classList.remove(
+    "border-amber-500",
+    "bg-amber-50",
+    "scale-[1.01]"
+  );
+});
 
   // Check file type
   if (!fileName.endsWith(".pdf") && !fileName.endsWith(".txt")) {
