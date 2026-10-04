@@ -2,6 +2,95 @@ const resumeFileInput = document.getElementById("resumeFile");
 const resumeTextArea = document.getElementById("resumeText");
 const uploadStatus = document.getElementById("uploadStatus");
 
+const dropZone = document.getElementById("dropZone");
+
+function handleResumeFile(file) {
+  if (!file) {
+    return;
+  }
+
+  const maxSize = 5 * 1024 * 1024;
+  const fileName = file.name.toLowerCase();
+
+  // Check file size
+  if (file.size > maxSize) {
+    uploadStatus.textContent =
+      "⚠ File is too large. Maximum size is 5 MB.";
+
+    uploadStatus.className =
+      "mt-3 text-sm font-semibold text-red-600";
+
+    return;
+  }
+
+  // Check file type
+  if (!fileName.endsWith(".pdf") && !fileName.endsWith(".txt")) {
+    uploadStatus.textContent =
+      "⚠ Please upload a PDF or TXT file.";
+
+    uploadStatus.className =
+      "mt-3 text-sm font-semibold text-red-600";
+
+    return;
+  }
+
+  // Display file information
+  const fileSize = (file.size / 1024).toFixed(1);
+
+  uploadStatus.innerHTML =
+    `✓ ${file.name}<br><span class="text-xs font-normal">${fileSize} KB</span>`;
+
+  uploadStatus.className =
+    "mt-3 text-sm font-semibold text-green-600";
+}
+
+resumeFileInput.addEventListener("change", function () {
+  const file = this.files[0];
+
+  if (file) {
+    handleResumeFile(file);
+  }
+});
+
+dropZone.addEventListener("dragover", function (event) {
+  event.preventDefault();
+
+  dropZone.classList.add(
+    "border-amber-500",
+    "bg-amber-50",
+    "scale-[1.01]"
+  );
+});
+
+dropZone.addEventListener("dragleave", function () {
+  dropZone.classList.remove(
+    "border-amber-500",
+    "bg-amber-50",
+    "scale-[1.01]"
+  );
+});
+
+dropZone.addEventListener("drop", function (event) {
+  event.preventDefault();
+
+  dropZone.classList.remove(
+    "border-amber-500",
+    "bg-amber-50",
+    "scale-[1.01]"
+  );
+
+  const file = event.dataTransfer.files[0];
+
+  if (file) {
+    handleResumeFile(file);
+
+    // Put dropped file into the file input
+    const dataTransfer = new DataTransfer();
+    dataTransfer.items.add(file);
+    resumeFileInput.files = dataTransfer.files;
+  }
+});
+
 const skillBank = [
   "Python","Java","JavaScript","HTML","CSS","Tailwind","React","Node.js","Express",
   "MongoDB","MySQL","SQL","Git","GitHub","PHP","C","C++","FastAPI","REST API",
