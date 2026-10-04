@@ -192,8 +192,45 @@
   Upload Resume
 </label>
 
-<div class="mt-2 rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 p-6 text-center hover:border-amber-400">
-  <div class="text-4xl">📄</div>
+<div
+  id="dropZone"
+  class="mt-2 cursor-pointer rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 p-8 text-center transition duration-300 hover:border-amber-400 hover:bg-amber-50"
+>
+  <div class="mx-auto grid h-16 w-16 place-items-center rounded-full bg-amber-100 text-3xl">
+    📄
+  </div>
+
+  <h3 class="mt-4 text-lg font-bold text-navy">
+    Drag & Drop your resume here
+  </h3>
+
+  <p class="mt-2 text-sm text-slate-500">
+    or click below to browse your computer
+  </p>
+
+  <label
+    for="resumeFile"
+    class="mt-5 inline-block cursor-pointer rounded-xl bg-navy px-5 py-3 text-sm font-bold text-white transition hover:bg-slate-800"
+  >
+    Browse Files
+  </label>
+
+  <input
+    id="resumeFile"
+    type="file"
+    accept=".pdf,.txt"
+    class="hidden"
+  />
+
+  <p class="mt-4 text-xs text-slate-400">
+    Supported formats: PDF, TXT · Maximum size: 5 MB
+  </p>
+
+  <p
+    id="uploadStatus"
+    class="mt-3 text-sm font-semibold"
+  ></p>
+</div>
 
   <p class="mt-2 font-semibold text-navy">
     Upload your resume
