@@ -178,121 +178,414 @@
 
     </section>
 
-    <section id="analyzer" class="bg-navy px-5 py-20">
-      <div class="mx-auto max-w-6xl">
-        <div class="text-center text-white">
-          <p class="font-bold uppercase tracking-widest text-amber-400">Try it now</p>
-          <h2 class="mt-2 text-3xl font-extrabold md:text-4xl">Analyze your resume</h2>
-          <p class="mx-auto mt-3 max-w-2xl text-slate-300">Paste your resume and optionally add a job description. This demo runs locally in your browser.</p>
+    <section id="analyzer" class="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-indigo-50 px-5 py-24">
+
+  <!-- Decorative background -->
+  <div class="pointer-events-none absolute -left-32 top-20 h-72 w-72 rounded-full bg-indigo-100/50 blur-3xl"></div>
+  <div class="pointer-events-none absolute -right-32 bottom-10 h-80 w-80 rounded-full bg-purple-100/50 blur-3xl"></div>
+
+  <div class="relative mx-auto max-w-6xl">
+
+    <!-- Section Heading -->
+    <div class="mx-auto max-w-3xl text-center">
+
+      <span class="inline-flex items-center gap-2 rounded-full bg-indigo-50 px-4 py-2 text-xs font-extrabold uppercase tracking-widest text-indigo-600">
+        ✨ Smart Analysis
+      </span>
+
+      <h2 class="mt-5 text-4xl font-extrabold tracking-tight text-navy md:text-5xl">
+        Analyze Your Resume
+      </h2>
+
+      <p class="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-500 md:text-lg">
+        Upload your resume and get smart insights, skill analysis,
+        job matching, and personalized suggestions to improve your profile.
+      </p>
+
+    </div>
+
+
+    <!-- Analyzer Cards -->
+    <div class="mt-12 grid gap-6 lg:grid-cols-2">
+
+      <!-- Resume Card -->
+      <div class="rounded-3xl border border-slate-200 bg-white p-7 shadow-xl shadow-slate-200/50">
+
+        <div class="flex items-center gap-4">
+
+          <div class="grid h-14 w-14 place-items-center rounded-2xl bg-indigo-50 text-2xl">
+            📄
+          </div>
+
+          <div>
+            <h3 class="text-xl font-extrabold text-navy">
+              Upload Your Resume
+            </h3>
+
+            <p class="mt-1 text-sm text-slate-500">
+              Drag & drop your resume or browse your computer.
+            </p>
+          </div>
+
         </div>
 
-        <div class="mt-10 grid gap-6 lg:grid-cols-2">
-          <div class="rounded-3xl bg-white p-6 shadow-xl">
-           <label class="block text-sm font-bold text-navy" for="resumeFile">
-  Upload Resume
-</label>
 
-<div
-  id="dropZone"
-  class="mt-2 cursor-pointer rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 p-8 text-center transition duration-300 hover:border-amber-400 hover:bg-amber-50"
->
-  <div class="mx-auto grid h-16 w-16 place-items-center rounded-full bg-amber-100 text-3xl">
-    📄
+        <!-- Drop Zone -->
+        <div
+          id="dropZone"
+          class="mt-7 cursor-pointer rounded-2xl border-2 border-dashed border-indigo-200 bg-indigo-50/40 p-10 text-center transition duration-300 hover:border-indigo-400 hover:bg-indigo-50"
+        >
+
+          <div class="mx-auto grid h-16 w-16 place-items-center rounded-full bg-white text-3xl shadow-sm">
+            📄
+          </div>
+
+          <h4 class="mt-5 text-lg font-extrabold text-navy">
+            Drag & Drop your resume here
+          </h4>
+
+          <p class="mt-2 text-sm text-slate-500">
+            or click below to browse your computer
+          </p>
+
+          <label
+            for="resumeFile"
+            class="mt-6 inline-flex cursor-pointer items-center gap-2 rounded-xl bg-indigo-600 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-indigo-200 transition hover:-translate-y-0.5 hover:bg-indigo-700"
+          >
+            ↑ &nbsp; Browse Files
+          </label>
+
+          <input
+            id="resumeFile"
+            type="file"
+            accept=".pdf,.txt"
+            class="hidden"
+          />
+
+          <p class="mt-5 text-xs text-slate-400">
+            Supported formats: PDF, TXT
+            <span class="mx-2">•</span>
+            Maximum size: 5 MB
+          </p>
+
+          <p
+            id="uploadStatus"
+            class="mt-3 text-sm font-semibold"
+          ></p>
+
+        </div>
+
+
+        <!-- Paste Resume -->
+        <div class="mt-6">
+
+          <div class="mb-3 flex items-center justify-between">
+
+            <label
+              for="resumeText"
+              class="text-sm font-extrabold text-navy"
+            >
+              Paste Your Resume Text
+            </label>
+
+            <span class="text-xs text-slate-400">
+              Optional if uploaded
+            </span>
+
+          </div>
+
+          <textarea
+            id="resumeText"
+            rows="7"
+            class="w-full resize-none rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm outline-none transition focus:border-indigo-400 focus:bg-white focus:ring-4 focus:ring-indigo-50"
+            placeholder="Paste your resume content here..."
+          ></textarea>
+
+        </div>
+
+      </div>
+
+
+      <!-- Job Description Card -->
+      <div class="rounded-3xl border border-slate-200 bg-white p-7 shadow-xl shadow-slate-200/50">
+
+        <div class="flex items-center gap-4">
+
+          <div class="grid h-14 w-14 place-items-center rounded-2xl bg-purple-50 text-2xl">
+            💼
+          </div>
+
+          <div>
+            <h3 class="text-xl font-extrabold text-navy">
+              Job Description
+              <span class="text-sm font-medium text-slate-400">
+                (Optional)
+              </span>
+            </h3>
+
+            <p class="mt-1 text-sm text-slate-500">
+              Add a job description for a more accurate match.
+            </p>
+          </div>
+
+        </div>
+
+
+        <textarea
+          id="jobText"
+          rows="13"
+          class="mt-7 w-full resize-none rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm leading-6 outline-none transition focus:border-indigo-400 focus:bg-white focus:ring-4 focus:ring-indigo-50"
+          placeholder="Paste the job description here...
+
+Example:
+We are looking for a Python Developer with knowledge of Python, SQL, REST APIs, Git and JavaScript..."
+        ></textarea>
+
+
+        <div class="mt-5 rounded-2xl bg-purple-50 p-4">
+
+          <div class="flex gap-3">
+
+            <span class="text-xl">💡</span>
+
+            <div>
+              <p class="text-sm font-bold text-purple-900">
+                Get better matching results
+              </p>
+
+              <p class="mt-1 text-xs leading-5 text-purple-700">
+                Include the complete job description so the analyzer
+                can compare your skills with the job requirements.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Analyze Button -->
+    <div class="mt-8 flex justify-center">
+
+      <button
+        id="analyzeBtn"
+        class="group inline-flex w-full max-w-md items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 px-8 py-4 text-base font-extrabold text-white shadow-xl shadow-indigo-200 transition duration-300 hover:-translate-y-1 hover:shadow-2xl"
+      >
+
+        <span class="text-xl">✨</span>
+
+        Analyze Resume
+
+        <span class="text-xl transition-transform group-hover:translate-x-1">
+          →
+        </span>
+
+      </button>
+
+    </div>
+
+    <p
+      id="status"
+      class="mt-4 text-center text-sm font-semibold"
+    ></p>
+
+
+    <!-- Analysis Result -->
+    <div
+      id="results"
+      class="mt-10 rounded-3xl border border-slate-200 bg-white p-7 shadow-xl shadow-slate-200/50"
+    >
+
+      <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+
+        <div class="flex items-center gap-4">
+
+          <div class="grid h-12 w-12 place-items-center rounded-2xl bg-indigo-50 text-xl">
+            📊
+          </div>
+
+          <div>
+            <h3 class="text-2xl font-extrabold text-navy">
+              Analysis Result
+            </h3>
+
+            <p class="mt-1 text-sm text-slate-500">
+              Your detailed resume analysis will appear here.
+            </p>
+          </div>
+
+        </div>
+
+        <span
+          id="scoreBadge"
+          class="w-fit rounded-full bg-slate-100 px-4 py-2 text-xs font-bold text-slate-500"
+        >
+          Not analyzed
+        </span>
+
+      </div>
+
+
+      <!-- Result Cards -->
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+
+        <!-- Resume Score -->
+        <div class="rounded-2xl border border-emerald-100 bg-emerald-50/50 p-5">
+
+          <div class="flex items-center justify-between">
+
+            <span class="text-2xl">⭐</span>
+
+            <span class="text-xs font-bold uppercase tracking-wide text-emerald-600">
+              Score
+            </span>
+
+          </div>
+
+          <p class="mt-5 text-sm font-semibold text-slate-600">
+            Resume Score
+          </p>
+
+          <p
+            id="resumeScore"
+            class="mt-1 text-4xl font-extrabold text-navy"
+          >
+            —
+          </p>
+
+        </div>
+
+
+        <!-- Job Match -->
+        <div class="rounded-2xl border border-indigo-100 bg-indigo-50/50 p-5">
+
+          <div class="flex items-center justify-between">
+
+            <span class="text-2xl">🎯</span>
+
+            <span class="text-xs font-bold uppercase tracking-wide text-indigo-600">
+              Match
+            </span>
+
+          </div>
+
+          <p class="mt-5 text-sm font-semibold text-slate-600">
+            Job Match
+          </p>
+
+          <p
+            id="matchScore"
+            class="mt-1 text-4xl font-extrabold text-navy"
+          >
+            —
+          </p>
+
+        </div>
+
+
+        <!-- Skills -->
+        <div class="rounded-2xl border border-purple-100 bg-purple-50/50 p-5">
+
+          <div class="flex items-center justify-between">
+
+            <span class="text-2xl">☷</span>
+
+            <span class="text-xs font-bold uppercase tracking-wide text-purple-600">
+              Skills
+            </span>
+
+          </div>
+
+          <p class="mt-5 text-sm font-semibold text-slate-600">
+            Skills Detected
+          </p>
+
+          <p
+            id="skillCount"
+            class="mt-1 text-4xl font-extrabold text-navy"
+          >
+            —
+          </p>
+
+        </div>
+
+
+        <!-- Suggestions -->
+        <div class="rounded-2xl border border-amber-100 bg-amber-50/50 p-5">
+
+          <div class="flex items-center justify-between">
+
+            <span class="text-2xl">💡</span>
+
+            <span class="text-xs font-bold uppercase tracking-wide text-amber-600">
+              AI Tips
+            </span>
+
+          </div>
+
+          <p class="mt-5 text-sm font-semibold text-slate-600">
+            Suggestions
+          </p>
+
+          <p
+            id="suggestionCount"
+            class="mt-1 text-4xl font-extrabold text-navy"
+          >
+            —
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- Skills -->
+      <div class="mt-8">
+
+        <h4 class="text-lg font-extrabold text-navy">
+          Detected Skills
+        </h4>
+
+        <div
+          id="skills"
+          class="mt-4 flex flex-wrap gap-2"
+        >
+          <span class="text-sm text-slate-400">
+            Run an analysis to see detected skills.
+          </span>
+        </div>
+
+      </div>
+
+
+      <!-- Suggestions -->
+      <div class="mt-8">
+
+        <h4 class="text-lg font-extrabold text-navy">
+          AI Suggestions
+        </h4>
+
+        <ul
+          id="suggestions"
+          class="mt-4 space-y-3 text-sm text-slate-600"
+        >
+          <li class="rounded-xl bg-slate-50 p-4">
+            Add your resume text and click
+            <strong>Analyze Resume</strong> to get personalized feedback.
+          </li>
+        </ul>
+
+      </div>
+
+    </div>
+
   </div>
 
-  <h3 class="mt-4 text-lg font-bold text-navy">
-    Drag & Drop your resume here
-  </h3>
-
-  <p class="mt-2 text-sm text-slate-500">
-    or click below to browse your computer
-  </p>
-
-  <label
-    for="resumeFile"
-    class="mt-5 inline-block cursor-pointer rounded-xl bg-navy px-5 py-3 text-sm font-bold text-white transition hover:bg-slate-800"
-  >
-    Browse Files
-  </label>
-
-  <input
-    id="resumeFile"
-    type="file"
-    accept=".pdf,.txt"
-    class="hidden"
-  />
-
-  <p class="mt-4 text-xs text-slate-400">
-    Supported formats: PDF, TXT · Maximum size: 5 MB
-  </p>
-
-  <p
-    id="uploadStatus"
-    class="mt-3 text-sm font-semibold"
-  ></p>
-</div>
-
-  <p class="mt-2 font-semibold text-navy">
-    Upload your resume
-  </p>
-
-  <p class="mt-1 text-sm text-slate-500">
-    PDF or TXT files only
-  </p>
-
-  <input
-    id="resumeFile"
-    type="file"
-    accept=".pdf,.txt"
-    class="mt-4 block w-full text-sm text-slate-600"
-  />
-
-  <p id="uploadStatus" class="mt-3 text-sm font-semibold"></p>
-</div>
-
-<div class="my-5 flex items-center gap-3">
-  <div class="h-px flex-1 bg-slate-200"></div>
-  <span class="text-sm font-semibold text-slate-400">OR</span>
-  <div class="h-px flex-1 bg-slate-200"></div>
-</div>
-
-<label class="block text-sm font-bold text-navy" for="resumeText">
-  Paste Resume Text
-</label>
-
-<textarea
-  id="resumeText"
-  rows="10"
-  class="mt-2 w-full rounded-2xl border border-slate-300 p-4 outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100"
-  placeholder="Paste your resume text here..."
-></textarea>
-            <label class="mt-5 block text-sm font-bold text-navy" for="jobText">Target job description (optional)</label>
-            <textarea id="jobText" rows="7" class="mt-2 w-full rounded-2xl border border-slate-300 p-4 outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100" placeholder="Paste the job description here..."></textarea>
-            <button id="analyzeBtn" class="mt-5 w-full rounded-xl bg-amber-500 px-5 py-3.5 font-extrabold text-navy hover:bg-amber-400">Analyze Resume</button>
-            <p id="status" class="mt-3 text-center text-sm text-slate-500"></p>
-          </div>
-
-          <div id="results" class="rounded-3xl bg-white p-6 shadow-xl">
-            <div class="flex items-center justify-between">
-              <h3 class="text-xl font-extrabold text-navy">Analysis Result</h3>
-              <span id="scoreBadge" class="rounded-full bg-slate-100 px-3 py-1 text-sm font-bold text-slate-500">Not analyzed</span>
-            </div>
-            <div class="mt-6 grid grid-cols-2 gap-4">
-              <div class="rounded-2xl bg-amber-50 p-5 text-center"><p class="text-sm text-slate-600">Resume Score</p><p id="resumeScore" class="mt-1 text-4xl font-extrabold text-navy">—</p></div>
-              <div class="rounded-2xl bg-slate-100 p-5 text-center"><p class="text-sm text-slate-600">Job Match</p><p id="matchScore" class="mt-1 text-4xl font-extrabold text-navy">—</p></div>
-            </div>
-            <div class="mt-6">
-              <h4 class="font-bold text-navy">Detected skills</h4>
-              <div id="skills" class="mt-3 flex flex-wrap gap-2"><span class="text-sm text-slate-500">Run an analysis to see skills.</span></div>
-            </div>
-            <div class="mt-6">
-              <h4 class="font-bold text-navy">Suggestions</h4>
-              <ul id="suggestions" class="mt-3 space-y-2 text-sm text-slate-600"><li>• Add your resume text and click Analyze Resume.</li></ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+</section>
 
     <section id="about" class="mx-auto max-w-6xl px-5 py-20">
       <div class="rounded-3xl bg-amber-50 p-8 md:p-12">
