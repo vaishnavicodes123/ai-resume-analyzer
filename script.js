@@ -265,12 +265,18 @@ analyzeBtn.addEventListener("click", () => {
     (score >= 75 ? "bg-green-100 text-green-700" : score >= 55 ? "bg-amber-100 text-amber-700" : "bg-red-100 text-red-700");
 
   const skillsBox = document.getElementById("skills");
+  document.getElementById("skillCount").textContent = skills.length;
   skillsBox.innerHTML = skills.length
     ? skills.map(skill => `<span class="rounded-full bg-slate-100 px-3 py-1 text-sm font-semibold text-navy">${skill}</span>`).join("")
     : '<span class="text-sm text-slate-500">No common skills detected.</span>';
 
   document.getElementById("suggestions").innerHTML =
-    suggestions.map(item => `<li class="rounded-xl bg-slate-50 p-3">• ${item}</li>`).join("");
+  suggestions
+    .map(item => `<li class="rounded-xl bg-slate-50 p-4">• ${item}</li>`)
+    .join("");
+
+document.getElementById("suggestionCount").textContent =
+  suggestions.length;
 
   status.textContent = "Analysis complete.";
   status.className = "mt-3 text-center text-sm font-semibold text-green-600";
