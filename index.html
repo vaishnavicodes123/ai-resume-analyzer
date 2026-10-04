@@ -6,6 +6,7 @@
   <meta name="description" content="AI Resume Analyzer - analyze resume text, extract skills, and get improvement suggestions." />
   <title>AI Resume Analyzer</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs" type="module"></script>
   <script>
     tailwind.config = {
       theme: {
@@ -118,8 +119,47 @@
 
         <div class="mt-10 grid gap-6 lg:grid-cols-2">
           <div class="rounded-3xl bg-white p-6 shadow-xl">
-            <label class="block text-sm font-bold text-navy" for="resumeText">Resume text</label>
-            <textarea id="resumeText" rows="12" class="mt-2 w-full rounded-2xl border border-slate-300 p-4 outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100" placeholder="Paste your resume text here..."></textarea>
+           <label class="block text-sm font-bold text-navy" for="resumeFile">
+  Upload Resume
+</label>
+
+<div class="mt-2 rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 p-6 text-center hover:border-amber-400">
+  <div class="text-4xl">📄</div>
+
+  <p class="mt-2 font-semibold text-navy">
+    Upload your resume
+  </p>
+
+  <p class="mt-1 text-sm text-slate-500">
+    PDF or TXT files only
+  </p>
+
+  <input
+    id="resumeFile"
+    type="file"
+    accept=".pdf,.txt"
+    class="mt-4 block w-full text-sm text-slate-600"
+  />
+
+  <p id="uploadStatus" class="mt-3 text-sm font-semibold"></p>
+</div>
+
+<div class="my-5 flex items-center gap-3">
+  <div class="h-px flex-1 bg-slate-200"></div>
+  <span class="text-sm font-semibold text-slate-400">OR</span>
+  <div class="h-px flex-1 bg-slate-200"></div>
+</div>
+
+<label class="block text-sm font-bold text-navy" for="resumeText">
+  Paste Resume Text
+</label>
+
+<textarea
+  id="resumeText"
+  rows="10"
+  class="mt-2 w-full rounded-2xl border border-slate-300 p-4 outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100"
+  placeholder="Paste your resume text here..."
+></textarea>
             <label class="mt-5 block text-sm font-bold text-navy" for="jobText">Target job description (optional)</label>
             <textarea id="jobText" rows="7" class="mt-2 w-full rounded-2xl border border-slate-300 p-4 outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100" placeholder="Paste the job description here..."></textarea>
             <button id="analyzeBtn" class="mt-5 w-full rounded-xl bg-amber-500 px-5 py-3.5 font-extrabold text-navy hover:bg-amber-400">Analyze Resume</button>
